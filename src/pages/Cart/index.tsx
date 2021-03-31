@@ -41,17 +41,27 @@ const Cart = (): JSX.Element => {
   );
 
   function handleProductIncrement(product: Product) {
-    updateProductAmount({
-      productId: product.id,
-      amount: product.amount,
-    });
+    const productSelected = cart.find((products) => products.id === product.id);
+    if (productSelected) {
+      const amount = productSelected.amount + 1;
+
+      updateProductAmount({
+        productId: product.id,
+        amount: amount,
+      });
+    }
   }
 
   function handleProductDecrement(product: Product) {
-    updateProductAmount({
-      productId: product.id,
-      amount: product.amount,
-    });
+    const productSelected = cart.find((products) => products.id === product.id);
+    if (productSelected) {
+      const amount = productSelected.amount - 1;
+
+      updateProductAmount({
+        productId: product.id,
+        amount: amount,
+      });
+    }
   }
 
   function handleRemoveProduct(productId: number) {

@@ -41,18 +41,21 @@ const Cart = (): JSX.Element => {
   );
 
   function handleProductIncrement(product: Product) {
-    updateProductAmount({ productId: product.id, amount: product.amount });
+    updateProductAmount({
+      productId: product.id,
+      amount: product.amount,
+    });
   }
 
   function handleProductDecrement(product: Product) {
-    if (product.amount > 0) {
-      let actualAmount = (product.amount -= 1);
-      updateProductAmount({ productId: product.id, amount: actualAmount });
-    }
+    updateProductAmount({
+      productId: product.id,
+      amount: product.amount,
+    });
   }
 
   function handleRemoveProduct(productId: number) {
-    // TODO
+    removeProduct(productId);
   }
 
   return (
@@ -110,7 +113,7 @@ const Cart = (): JSX.Element => {
                   <button
                     type="button"
                     data-testid="remove-product"
-                    // onClick={() => handleRemoveProduct(product.id)}
+                    onClick={() => handleRemoveProduct(product.id)}
                   >
                     <MdDelete size={20} />
                   </button>
